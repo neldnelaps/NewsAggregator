@@ -37,8 +37,6 @@ extension UITableView {
     }
 }
 
-
-
 extension Reactive where Base: UITableView {
     func isEmpty(message: String) -> Binder<Bool> {
         return Binder(base) { tableView, isEmpty in
