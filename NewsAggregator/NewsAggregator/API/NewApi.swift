@@ -28,12 +28,11 @@ class NewApi : NewApiProtocol {
             URLQueryItem(name: "apikey", value: "\(ClientAPI.apiKey)"),
             URLQueryItem(name: "language", value: Locale.current.languageCode)]
 
-        guard let componentsUrl = components.url else {
-            throw ErrorApi(message: "Incorrect URL")
-        }
+        guard let componentsUrl = components.url
+        else { throw ErrorApi(message: "Incorrect URL") }
 
         let response = try await baseRequest(from: componentsUrl) as Response
-        return response.results as [Result]
+        return response.results
     }
     
     private func baseRequest<T: Decodable>(from url: URL) async throws -> T {

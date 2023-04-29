@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Result: Identifiable, Codable {
-    let id = UUID()
+struct Result: Codable {
+    
     let title: String
     let link: String
     let creator: [String]?
@@ -22,4 +22,5 @@ struct Result: Identifiable, Codable {
         case pubDate
         case imageURL = "image_url"
     }
+    
 }

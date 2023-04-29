@@ -17,13 +17,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YBC-z5-BIF">
-                                <rect key="frame" x="76" y="362" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_splash" translatesAutoresizingMaskIntoConstraints="NO" id="YBC-z5-BIF">
+                                <rect key="frame" x="118" y="360" width="157" height="157"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="YBC-z5-BIF" secondAttribute="height" multiplier="1:1" id="Jnd-r5-Qzq"/>
+                                </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="News Aggregator" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="woA-BQ-6Ik">
+                                <rect key="frame" x="116.66666666666667" y="525" width="159.66666666666663" height="25.333333333333371"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="YBC-z5-BIF" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="5xm-XT-gUc"/>
+                            <constraint firstItem="YBC-z5-BIF" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="OMX-IK-QRI"/>
+                            <constraint firstItem="woA-BQ-6Ik" firstAttribute="top" secondItem="YBC-z5-BIF" secondAttribute="bottom" constant="8" id="bXa-FQ-Off"/>
+                            <constraint firstItem="woA-BQ-6Ik" firstAttribute="centerX" secondItem="YBC-z5-BIF" secondAttribute="centerX" id="gSP-5a-6gS"/>
+                            <constraint firstItem="YBC-z5-BIF" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.4" id="ukx-Bh-xKO"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -32,6 +47,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic_splash" width="341.33334350585938" height="341.33334350585938"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

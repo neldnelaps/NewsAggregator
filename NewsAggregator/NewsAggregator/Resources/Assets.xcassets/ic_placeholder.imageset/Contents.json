@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "placeholder_vector.svg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "placeholder_vector 1.svg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "placeholder_vector 2.svg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

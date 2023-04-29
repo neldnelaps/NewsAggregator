@@ -11,11 +11,11 @@ class MainTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.white
         setupTabBar()
     }
     
     func setupTabBar() {
+        self.tabBar.tintColor = .systemYellow
         let newsViewController = createNavigationController(vc: NewsViewController(), titleName: "News", imageName: "newspaper")
         let selectedNewsViewController = createNavigationController(vc: SelectedNewsViewController(), titleName: "Selected News", imageName: "star")
         viewControllers = [newsViewController, selectedNewsViewController]
@@ -31,6 +31,7 @@ class MainTabBarController: UITabBarController {
         item.titlePositionAdjustment = .init(horizontal: 0, vertical: 10)
         let navController = UINavigationController(rootViewController: vc)
         navController.tabBarItem = item
+        navController.navigationBar.tintColor = .systemYellow
         return navController
     }
 
