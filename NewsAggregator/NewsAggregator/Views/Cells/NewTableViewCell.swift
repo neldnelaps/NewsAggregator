@@ -9,6 +9,8 @@ import UIKit
 
 class NewTableViewCell: UITableViewCell {
 
+    static let key : String = "NewTableViewCell"
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var pubDateLabel: UILabel!
     @IBOutlet weak var creatorLabel: UILabel!

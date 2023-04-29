@@ -24,14 +24,14 @@ class NewDetailsViewModel {
         newsArray = try! Realm().objects(New.self).map({$0})
     }
     
-    func addNew(new: New){
+    func addNew(new: New) {
         let existingNew = realm.object(ofType: New.self, forPrimaryKey: new.id)
 
         if let existingNew = existingNew {
            return
         } else {
-            try? realm.write {
-                realm.add(new, update: .all)
+            try! realm.write {
+                realm.create(New.self, value: new, update: .all)
             }
         }
     }
@@ -40,6 +40,7 @@ class NewDetailsViewModel {
         do {
             try realm.write {
                 realm.delete(newsArray[indexPath.row])
+                realm.refresh()
                 newsArray.remove(at: indexPath.row)
             }
         }

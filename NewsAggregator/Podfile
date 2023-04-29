@@ -13,7 +13,6 @@ target 'NewsAggregator' do
   pod 'RxRealm'
 
   pod 'SDWebImage'
-  #pod 'EmptyDataSet-Swift', '~> 5.0.0'
 
   target 'NewsAggregatorTests' do
     inherit! :search_paths

@@ -25,14 +25,20 @@ class NewDetailsViewController: UIViewController {
     
     var indexPath : IndexPath?
 
+    init(new: New, isSelected: Bool, indexPath: IndexPath) {
+        self.new = new
+        self.isSelected = isSelected
+        self.indexPath = indexPath
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        var addButton : UIBarButtonItem
-        if isSelected {
-            addButton = UIBarButtonItem(title: "Remove", style: .done, target: self, action: #selector(removeAction))
-        } else {
-            addButton = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(addAction))
-        }
+        let addButton = UIBarButtonItem(title: isSelected ? "Remove" : "Add", style: .done, target: self, action: #selector(action))
         self.navigationItem.rightBarButtonItem = addButton
         
         titleLabel.text = new.title
@@ -49,29 +55,32 @@ class NewDetailsViewController: UIViewController {
                               options: [.continueInBackground, .progressiveLoad],
                               completed: nil)
     }
-    
-    @objc func addAction () {
-        let alert = UIAlertController(title: "New", message: "Add news to favorites?", preferredStyle: .alert)
-        alert.view.tintColor = .systemYellow
-        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { [weak self] _ in
-            guard let vc = self else { return }
-            self?.viewModel.addNew(new: vc.new)
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        
-        present(alert, animated: true)
+
+    // MARK: - Alert
+    @objc func action() {
+        if isSelected {
+            guard let index = indexPath else { return }
+            presentAlert(title: "New", message: "Remove news from favorites?", actionTitle: "Remove",
+                handler: { [weak self] in
+                    self?.viewModel.removeNew(indexPath: index)
+                    self?.navigationController?.popViewController(animated: true)
+                })
+        } else {
+            presentAlert(title: "New", message: "Add news to favorites?", actionTitle: "Add",
+                handler: { [weak self] in
+                    guard let vc = self else { return }
+                    self?.viewModel.addNew(new: vc.new)
+                })
+        }
     }
     
-    @objc func removeAction() {
-        guard let index = indexPath else { return }
-        let alert = UIAlertController(title: "New", message: "Remove news from favorites?", preferredStyle: .alert)
+    func presentAlert(title: String, message: String, actionTitle: String, handler: (() -> Void)?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.view.tintColor = .systemYellow
-        alert.addAction(UIAlertAction(title: "Remove", style: .destructive) { [weak self] _ in
-            self?.viewModel.removeNew(indexPath: index)
-            self?.navigationController?.popViewController(animated: true)
+        alert.addAction(UIAlertAction(title: actionTitle, style: .default) { _ in
+            handler?()
         })
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-
         present(alert, animated: true)
     }
 
