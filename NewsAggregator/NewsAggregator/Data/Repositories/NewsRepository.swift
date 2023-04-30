@@ -1,5 +1,5 @@
 //
-//  NewApi.swift
+//  NewsRepository.swift
 //  NewsAggregator
 //
 //  Created by Natalia Pashkova on 26.04.2023.
@@ -7,11 +7,7 @@
 
 import Foundation
 
-protocol NewApiProtocol {
-    func getNews() async throws -> [Result]
-}
-
-class NewApi : NewApiProtocol {
+class NewsRepository : NewsRepositoryProtocol {
     
     private let headers: [String: String] = [:]
     private let urlComponents: URLComponents = {
@@ -29,7 +25,7 @@ class NewApi : NewApiProtocol {
             URLQueryItem(name: "language", value: Locale.current.languageCode)]
 
         guard let componentsUrl = components.url
-        else { throw ErrorApi(message: "Incorrect URL") }
+        else { throw ErrorRepository(message: "Incorrect URL") }
 
         let response = try await baseRequest(from: componentsUrl) as Response
         return response.results

@@ -15,7 +15,7 @@ import RxCocoa
 
 class NewsViewController: BaseTableViewController {
     
-    private var viewModel = NewsViewModel()
+    private var viewModel = NewsViewModel(loadNewsUsecase: LoadNewsUsecase(newsRepository: NewsRepository()))
     private var bag = DisposeBag()
     
     override func viewDidLoad() {
@@ -33,9 +33,9 @@ class NewsViewController: BaseTableViewController {
         viewModel.showLoading.asObservable().observe(on: MainScheduler.instance).bind(to: indicatorView.rx.isAnimating).disposed(by: bag)
         
         let isEmpty = tableView.rx.isEmpty(message: "Oops, something went wrong")
-        viewModel.news.map({ $0.count <= 0 }).distinctUntilChanged().bind(to: isEmpty).disposed(by: bag)
+        viewModel.items.map({ $0.count <= 0 }).distinctUntilChanged().bind(to: isEmpty).disposed(by: bag)
 
-        viewModel.news.bind(to: tableView.rx.items(cellIdentifier: NewTableViewCell.key,
+        viewModel.items.bind(to: tableView.rx.items(cellIdentifier: NewTableViewCell.key,
                                                      cellType: NewTableViewCell.self)) { (_, item: Result, cell: NewTableViewCell) in
             cell.titleLabel?.text = item.title
             cell.pubDateLabel?.text = item.pubDate
@@ -43,7 +43,7 @@ class NewsViewController: BaseTableViewController {
         }.disposed(by: bag)
 
         tableView.rx.itemSelected.subscribe(onNext: { indexPath in
-            let item = try! self.viewModel.news.value()[indexPath.row]
+            let item = try! self.viewModel.items.value()[indexPath.row]
             let new = New()
             new.title = item.title
             new.creator = item.creator?.compactMap{$0}.joined(separator: ", ") ?? "anonym"

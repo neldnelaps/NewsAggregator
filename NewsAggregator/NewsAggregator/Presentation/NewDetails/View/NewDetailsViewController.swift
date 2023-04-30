@@ -17,7 +17,10 @@ class NewDetailsViewController: UIViewController {
     @IBOutlet weak var linkTextView: UITextView!
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    private var viewModel = NewDetailsViewModel()
+    private var viewModel = NewDetailsViewModel(newDetailsUsecase: NewDetailsUsecase(
+        realmRepository: RealmRepository(),
+        realmGetRepository: RealmGetRepository()))
+    
     private var bag = DisposeBag()
 
     var new = New()
@@ -59,11 +62,11 @@ class NewDetailsViewController: UIViewController {
     // MARK: - Alert
     @objc func action() {
         if isSelected {
-            guard let index = indexPath else { return }
             presentAlert(title: "New", message: "Remove news from favorites?", actionTitle: "Remove",
                 handler: { [weak self] in
-                    self?.viewModel.removeNew(indexPath: index)
-                    self?.navigationController?.popViewController(animated: true)
+                guard let vc = self, let index = vc.indexPath else { return }
+                self?.viewModel.removeNew(new: (self?.viewModel.newsArray[index.row])!)
+                self?.navigationController?.popViewController(animated: true)
                 })
         } else {
             presentAlert(title: "New", message: "Add news to favorites?", actionTitle: "Add",

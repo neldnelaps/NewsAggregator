@@ -12,13 +12,18 @@ import RxSwift
 
 class SelectedNewsViewController: BaseTableViewController {
     
-    private var viewModel = SelectedNewsViewModel()
+    private var viewModel = SelectedNewsViewModel(loadSelectedNewsUsecase: LoadSelectedNewsUsecase(realmRepository: RealmGetRepository()))
     private var bag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Selected News"
         bindTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.fetchNews()
     }
 
     func bindTableView() {
@@ -27,9 +32,9 @@ class SelectedNewsViewController: BaseTableViewController {
         viewModel.showLoading.asObservable().observe(on: MainScheduler.instance).bind(to: indicatorView.rx.isAnimating).disposed(by: bag)
         
         let isEmpty = tableView.rx.isEmpty(message: "No selected news")
-        viewModel.news.map({ $0.count <= 0 }).distinctUntilChanged().bind(to: isEmpty).disposed(by: bag)
+        viewModel.items.map({ $0.count <= 0 }).distinctUntilChanged().bind(to: isEmpty).disposed(by: bag)
         
-        viewModel.news.bind(to: tableView.rx.items(cellIdentifier: NewTableViewCell.key,
+        viewModel.items.bind(to: tableView.rx.items(cellIdentifier: NewTableViewCell.key,
                                                    cellType: NewTableViewCell.self))
         { (_, item: New, cell: NewTableViewCell) in
             cell.titleLabel?.text = item.title
@@ -38,7 +43,7 @@ class SelectedNewsViewController: BaseTableViewController {
         }.disposed(by: bag)
         
         tableView.rx.itemSelected.subscribe(onNext: { indexPath in
-            let item = try! self.viewModel.news.value()[indexPath.row]
+            let item = try! self.viewModel.items.value()[indexPath.row]
             let new = New()
             new.title = item.title
             new.creator = item.creator

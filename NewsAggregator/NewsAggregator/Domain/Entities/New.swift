@@ -11,7 +11,6 @@ import RealmSwift
 
 class New : Object {
     
-    @Persisted var id: String = UUID().uuidString
     @Persisted var title : String
     @Persisted var link : String
     @Persisted var creator : String
@@ -20,7 +19,7 @@ class New : Object {
     @Persisted var imageURL : String?
     
     override static func primaryKey() -> String? {
-        return "id"
+        return "title"
     }
     
 }

@@ -1,5 +1,5 @@
 //
-//  NewApiTests.swift
+//  NewsRepository.swift
 //  NewsAggregatorTests
 //
 //  Created by Natalia Pashkova on 29.04.2023.
@@ -8,21 +8,21 @@
 import XCTest
 @testable import NewsAggregator
 
-final class NewApiTests: XCTestCase {
+final class NewsRepositoryTests: XCTestCase {
 
     var sut: URLSession!
-    private var apiNew: NewApiProtocol!
+    private var newsRepository: NewsRepositoryProtocol!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
       
         sut = URLSession(configuration: .default)
-        apiNew = NewApi()
+        newsRepository = NewsRepository()
     }
 
     override func tearDownWithError() throws {
         sut = nil
-        apiNew = nil
+        newsRepository = nil
         try super.tearDownWithError()
     }
 
@@ -48,11 +48,6 @@ final class NewApiTests: XCTestCase {
       // then
       XCTAssertNil(responseError)
       XCTAssertEqual(statusCode, 200)
-    }
-    
-    func testGetNews() async {
-        let news = (try? await apiNew.getNews()) ?? []
-        XCTAssertEqual(news.count, 10)
     }
 
 }
