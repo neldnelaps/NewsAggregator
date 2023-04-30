@@ -1,1 +1,3 @@
 # NewsAggregator
+
+Clean Architecture + MVVM
