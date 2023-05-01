@@ -17,6 +17,7 @@ class NewDetailsViewController: UIViewController {
     @IBOutlet weak var linkTextView: UITextView!
     @IBOutlet weak var descriptionLabel: UILabel!
     
+    //TODO надо переделать опеределение vm через di
     private var viewModel = NewDetailsViewModel(newDetailsUsecase: NewDetailsUsecase(
         realmRepository: RealmRepository(),
         realmGetRepository: RealmGetRepository()))

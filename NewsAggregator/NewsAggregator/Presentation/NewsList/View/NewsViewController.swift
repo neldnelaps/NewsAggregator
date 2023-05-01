@@ -15,6 +15,7 @@ import RxCocoa
 
 class NewsViewController: BaseTableViewController {
     
+    //TODO надо переделать опеределение vm через di
     private var viewModel = NewsViewModel(loadNewsUsecase: LoadNewsUsecase(newsRepository: NewsRepository()))
     private var bag = DisposeBag()
     

@@ -12,6 +12,7 @@ import RxSwift
 
 class SelectedNewsViewController: BaseTableViewController {
     
+    //TODO надо переделать опеределение vm через di
     private var viewModel = SelectedNewsViewModel(loadSelectedNewsUsecase: LoadSelectedNewsUsecase(realmRepository: RealmGetRepository()))
     private var bag = DisposeBag()
     
