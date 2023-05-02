@@ -19,8 +19,7 @@ class NewsViewModel {
     init(loadNewsUsecase: LoadNewsUsecase) {
         self.loadNewsUsecase = loadNewsUsecase
     }
-    
-    // MARK: - Input
+
     func fetchNews() async {
         let news = await loadNewsUsecase.getNews()
         showLoading.accept(false)

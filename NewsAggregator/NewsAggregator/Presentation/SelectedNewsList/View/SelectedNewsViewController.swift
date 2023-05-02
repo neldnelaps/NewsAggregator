@@ -12,12 +12,12 @@ import RxSwift
 
 class SelectedNewsViewController: BaseTableViewController {
     
-    //TODO надо переделать опеределение vm через di
-    private var viewModel = SelectedNewsViewModel(loadSelectedNewsUsecase: LoadSelectedNewsUsecase(realmRepository: RealmGetRepository()))
+    private var viewModel: SelectedNewsViewModel!
     private var bag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel = container.resolve(SelectedNewsViewModel.self)!
         title = "Selected News"
         bindTableView()
     }
@@ -56,8 +56,8 @@ class SelectedNewsViewController: BaseTableViewController {
             let vc = NewDetailsViewController(new: new, isSelected: true, indexPath: indexPath)
             self.show(vc, sender: self)
         }).disposed(by: bag)
-        
     }
+    
 }
 
 extension SelectedNewsViewController : UITableViewDelegate { }

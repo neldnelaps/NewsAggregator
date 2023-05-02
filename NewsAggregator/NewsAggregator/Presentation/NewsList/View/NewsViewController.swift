@@ -14,14 +14,15 @@ import RxSwift
 import RxCocoa
 
 class NewsViewController: BaseTableViewController {
-    
-    //TODO надо переделать опеределение vm через di
-    private var viewModel = NewsViewModel(loadNewsUsecase: LoadNewsUsecase(newsRepository: NewsRepository()))
+
+    private var viewModel: NewsViewModel!
     private var bag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         title = "News"
+        viewModel = container.resolve(NewsViewModel.self)!
         Task { await viewModel.fetchNews() }
         bindTableView()
         setupRefreshControl()

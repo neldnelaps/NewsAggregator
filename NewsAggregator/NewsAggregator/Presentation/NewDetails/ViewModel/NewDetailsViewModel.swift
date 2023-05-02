@@ -16,7 +16,6 @@ class NewDetailsViewModel {
     init(newDetailsUsecase: NewDetailsUsecase) {
         self.newDetailsUsecase = newDetailsUsecase
         newsArray = [New]()
-        fetchNews ()
     }
     
     func fetchNews () {

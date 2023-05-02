@@ -16,6 +16,8 @@
 		751F69E429FD07B000292EC2 /* TableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751F69E329FD07B000292EC2 /* TableViewExtension.swift */; };
 		751F69E729FD182E00292EC2 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751F69E629FD182E00292EC2 /* BaseTableViewController.swift */; };
 		751F69E929FD5DF800292EC2 /* NewsRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751F69E829FD5DF800292EC2 /* NewsRepositoryTests.swift */; };
+		753DEF802A0144ED00F70873 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753DEF7F2A0144ED00F70873 /* ViewControllerExtension.swift */; };
+		753DEF822A01481B00F70873 /* ContainerDI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753DEF812A01481B00F70873 /* ContainerDI.swift */; };
 		7565CE9E29FD6DCA0094FD98 /* LoadNewsUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7565CE9D29FD6DCA0094FD98 /* LoadNewsUsecase.swift */; };
 		7565CEA029FD6FEB0094FD98 /* LoadSelectedNewsUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7565CE9F29FD6FEB0094FD98 /* LoadSelectedNewsUsecase.swift */; };
 		7565CEB029FE88850094FD98 /* NewsRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7565CEAF29FE88850094FD98 /* NewsRepositoryProtocol.swift */; };
@@ -74,6 +76,8 @@
 		751F69E329FD07B000292EC2 /* TableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewExtension.swift; sourceTree = "<group>"; };
 		751F69E629FD182E00292EC2 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		751F69E829FD5DF800292EC2 /* NewsRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRepositoryTests.swift; sourceTree = "<group>"; };
+		753DEF7F2A0144ED00F70873 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
+		753DEF812A01481B00F70873 /* ContainerDI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerDI.swift; sourceTree = "<group>"; };
 		7565CE9D29FD6DCA0094FD98 /* LoadNewsUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadNewsUsecase.swift; sourceTree = "<group>"; };
 		7565CE9F29FD6FEB0094FD98 /* LoadSelectedNewsUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadSelectedNewsUsecase.swift; sourceTree = "<group>"; };
 		7565CEAF29FE88850094FD98 /* NewsRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRepositoryProtocol.swift; sourceTree = "<group>"; };
@@ -154,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				751F69E329FD07B000292EC2 /* TableViewExtension.swift */,
+				753DEF7F2A0144ED00F70873 /* ViewControllerExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -379,6 +384,7 @@
 			children = (
 				75A6CFB929F94AD5000D7616 /* AppDelegate.swift */,
 				75A6CFBB29F94AD5000D7616 /* SceneDelegate.swift */,
+				753DEF812A01481B00F70873 /* ContainerDI.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -655,12 +661,14 @@
 				7565CE9E29FD6DCA0094FD98 /* LoadNewsUsecase.swift in Sources */,
 				751F69E729FD182E00292EC2 /* BaseTableViewController.swift in Sources */,
 				7565CEB029FE88850094FD98 /* NewsRepositoryProtocol.swift in Sources */,
+				753DEF802A0144ED00F70873 /* ViewControllerExtension.swift in Sources */,
 				7565CEB329FE8B9F0094FD98 /* NewDetailsUsecase.swift in Sources */,
 				75A6CFBE29F94AD5000D7616 /* MainTabBarController.swift in Sources */,
 				7565CEA029FD6FEB0094FD98 /* LoadSelectedNewsUsecase.swift in Sources */,
 				75A6CFF829F96198000D7616 /* NewsViewModel.swift in Sources */,
 				75A6CFF029F94EC9000D7616 /* Result.swift in Sources */,
 				75A6CFFC29F97942000D7616 /* NewsViewController.swift in Sources */,
+				753DEF822A01481B00F70873 /* ContainerDI.swift in Sources */,
 				7565CEB529FE8F700094FD98 /* RealmRepositoryProtocol.swift in Sources */,
 				751F69D929FBDE9700292EC2 /* NewDetailsViewController.swift in Sources */,
 				75A6D00B29F98DEF000D7616 /* SelectedNewsViewModel.swift in Sources */,

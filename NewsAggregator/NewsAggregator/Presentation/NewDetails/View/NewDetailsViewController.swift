@@ -17,10 +17,7 @@ class NewDetailsViewController: UIViewController {
     @IBOutlet weak var linkTextView: UITextView!
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    //TODO надо переделать опеределение vm через di
-    private var viewModel = NewDetailsViewModel(newDetailsUsecase: NewDetailsUsecase(
-        realmRepository: RealmRepository(),
-        realmGetRepository: RealmGetRepository()))
+    private var viewModel: NewDetailsViewModel!
     
     private var bag = DisposeBag()
 
@@ -42,6 +39,9 @@ class NewDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel = container.resolve(NewDetailsViewModel.self)!
+        viewModel.fetchNews()
+        
         let addButton = UIBarButtonItem(title: isSelected ? "Remove" : "Add", style: .done, target: self, action: #selector(action))
         self.navigationItem.rightBarButtonItem = addButton
         
@@ -65,8 +65,8 @@ class NewDetailsViewController: UIViewController {
         if isSelected {
             presentAlert(title: "New", message: "Remove news from favorites?", actionTitle: "Remove",
                 handler: { [weak self] in
-                guard let vc = self, let index = vc.indexPath else { return }
-                self?.viewModel.removeNew(new: (self?.viewModel.newsArray[index.row])!)
+                guard let vc = self, let index = vc.indexPath?.row else { return }
+                self?.viewModel.removeNew(new: (self?.viewModel.newsArray[index])!)
                 self?.navigationController?.popViewController(animated: true)
                 })
         } else {
